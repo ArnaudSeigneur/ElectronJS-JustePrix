@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Formulaire</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<form action="/game/settings/add/" method="post" id="mainForm">
+    <p>
+        <label for="playerOne">Joueur 1 :</label>
+        <input type="text" id="playerOne" name="playerOne"/>
+    </p>
+    <p>
+        <label for="playerTwo">Joueur 2 :</label>
+        <input type="text" id="playerTwo" name="playerTwo"/>
+    </p>
+    <p>
+        <label for="objectName">Nom de l'objet :</label>
+        <input type="text" id="objectName" name="objectName"/>
+    </p>
+    <p>
+        <label for="objectValue">Valeur de l'objet :</label>
+        <input type="text" id="objectValue" name="objectValue"/>
+    </p>
+    <input type="submit" id="submit" value="Jouer !" hidden/>
+</form>
+
+<script>
+    $(function () {
+
+        const playerOne = $("#playerOne"),
+            playerTwo = $("#playerTwo"),
+            objectName = $("#objectName"),
+            objectValue = $("#objectValue");
+
+        const onkeyup = function (e) {
+            // Stop propagation
+            e.stopPropagation();
+
+            const submitButton = $("#submit");
+
+            // If all value are okay show the button
+            // Else hide the button
+            if (playerOne.val() && playerTwo.val() && objectName.val() && objectValue.val()) {
+                submitButton.show();
+            } else {
+                submitButton.hide();
+            }
+
+        };
+
+        // Add same function for multiple events
+        playerOne.on("keyup", onkeyup);
+        playerTwo.on("keyup", onkeyup);
+        objectName.on("keyup", onkeyup);
+        objectValue.on("keyup", onkeyup);
+
+    });
+</script>
+
+</body>
+</html>

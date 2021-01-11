@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Jeu</title>
+</head>
+
+<body>
+<div><%= playerOneName %> a choisi de vous faire découvrir la valeur de : <%= objectName %></div>
+<br>
+<div>Vous avez : <%= nbAttempts %> tentative(s)</div>
+<br>
+<ul>
+    <% messages.forEach(function(msg, index) { %>
+        <li>Tentative <%= index %> : <%= msg %></li>
+    <% }); %>
+</ul>
+
+<form action="/game/check/" method="post">
+    <p>
+        <label for="newTry">Entrez une valeur :</label>
+        <input type="text" name="newTry" id="newTry" autofocus/>
+        <input type="submit" value="Essayer !"/>
+    </p>
+</form>
+</body>
+</html>
